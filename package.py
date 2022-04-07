@@ -3,6 +3,7 @@ from enum import Enum, auto
 from hashtable import HashTable
 
 
+# Enum to validate that status updates are of an allowed status
 class Status(Enum):
     DELIVERED = auto()
     ENROUTE = auto()
@@ -10,6 +11,7 @@ class Status(Enum):
     HOLD = auto()
 
 
+# Simple object class for packages and their various fields
 class Package:
 
     def __init__(self):
@@ -24,6 +26,3 @@ class Package:
         self.truck = None
         self.status = Status.HUB
         self.time_delivered = None
-
-
-
