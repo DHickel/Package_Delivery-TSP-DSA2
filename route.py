@@ -16,7 +16,7 @@ class Route:
 
     # Loops through deliveries calling the __shortest_next method to calculate the next closest stop, then set return
     # to current and continues. Could all be done in one function, but make code slightly more modular for later edits.
-    # O(n), though it practice it is O(n^2) since it calls an O(n) function inside a loop
+    # O(n), though it practice it is O(n^2) since it calls an O(n) function inside a loop that relies on the same input
     def __calculate_route(self):
         while self.deliveries:
             self.current = self.__shortest_next(self.current)[0]

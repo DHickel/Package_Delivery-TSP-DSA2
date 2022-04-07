@@ -10,18 +10,20 @@ class HashTable:
 
     # Returns the index in base array of hashed key
     # "Private" to avoid direct access,which could lead to errors
+    # O(1)
     def __hash_key(self, key):
         return hash(key) % len(self.__base_list)
 
     # Inserts a new key/value pair into the bucket index of the underlying list
     # Keys will always be even, and their value will be i + 1 (odd)
     # "Private" to avoid direct access, which could lead to errors
+    # O(1)
     def __new_pair(self, index, key, value):
         self.__base_list[index].append(key)
         self.__base_list[index].append(value)
 
     # Function for inserting a key/value into the hashtable
-
+    # O(n)
     def put(self, key, value):
         # Gets index of key
         index = self.__hash_key(key)
@@ -41,6 +43,8 @@ class HashTable:
 
             self.__new_pair(index, key, value)
 
+    # Function for returning the value pari for a key
+    # O(n)
     def get(self, key):
         # Gets index of key
         index = self.__hash_key(key)
@@ -63,21 +67,22 @@ class HashTable:
             return None
 
     # Loops through all indexes of the underlying list to return a tuple list of all contained values
+    # O(n)
     def all(self):
         found = []
-        for i in range(0, len(self.__base_list) ):
+        for i in range(0, len(self.__base_list)):
             if self.__base_list[i] is not None:
 
                 # Direct access speed up, for single key/value buckets
                 if len(self.__base_list[i]) == 2:
-                    found.append((self.__base_list[i][0],self.__base_list[i][1]))
+                    found.append((self.__base_list[i][0], self.__base_list[i][1]))
 
                 # Loops through bucket to get all key/value pairs if there are multiple
                 else:
                     for k in range(0, len(self.__base_list[i]), 2):
-                        found.append((self.__base_list[i][k], self.__base_list[i][k +1 ]))
+                        found.append((self.__base_list[i][k], self.__base_list[i][k + 1]))
         return found
-
+    # O(n)
     def remove(self, key):
         # Gets index of key
         index = self.__hash_key(key)
@@ -97,5 +102,3 @@ class HashTable:
                 if self.__base_list[index][k] == key:
                     self.__base_list[index][k] = None
                     self.__base_list[index][k + 1] = None
-
-

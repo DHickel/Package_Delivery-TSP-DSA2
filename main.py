@@ -1,3 +1,7 @@
+
+# Student ID: #001378298
+# Data Structures and Algorithms II – C950
+
 import datetime
 from package import Status
 from route import Route, Addresses
@@ -9,10 +13,16 @@ address_data = 'Data/addressData.csv'
 distance_data = 'Data/distanceTable.csv'
 hub = '4001 South 700'
 
+# Time complexity is O(n^2), as no runtime component has more than 2 nested loops.
+# The space complexity is 0(n^2) as well, this is due to the nested hashtables for the distance data which store a
+# nested hashtable with a  copy of all distance data for every address in the outer hashtable
+
 # Loads the packages on trucks, and initiates the HashTable of package data
 load = Load(package_data)
+
 # Initiates the nested HashTable containing distances as well a helper list of addresses strings
 address_table = Addresses(address_data, distance_data)
+
 # Assigns the package_table to a variable
 package_table = load.package_table
 # Assigns the list of loaded truck objects to a variable
@@ -21,6 +31,7 @@ trucks = load.trucks
 # Iterates through list of trucks, uses their package_lists of package IDs to make a list of tuples with their ID and
 # address. Then uses this list to generate a route using the algorithm in the route class, and assigns it to route
 # field for each truck. Finally, it sets their first delivery address to the address at the beginning of the route list.
+# O(n^2)
 for truck in trucks:
     deliveries = []
     for p in truck.package_list:
@@ -31,10 +42,10 @@ for truck in trucks:
 
 quit = False
 
-# Simple function for input validation on menu
-# O(1)
+
 
 # While loop with menu options, loops until q inputted to quit
+# O(1) as its runtime complexity has no reliance on an input n even though it is a loop
 while not quit:
     print("############################################")
     print("                    Menu                    ")
@@ -83,7 +94,7 @@ while not quit:
             time = datetime.datetime(1, 1, 1, int(time_hr), int(time_min), 0)
             delivery_sim.start_deliveries(time)
             delivery_sim.trucks_at_time()
-        except :
+        except:
             print("Invalid Input")
         input("Press Enter To Continue...")
 

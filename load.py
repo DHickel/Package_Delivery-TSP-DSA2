@@ -14,8 +14,9 @@ class Load:
         self.trucks = [Truck("Truck1", 1), Truck("Truck2", 2), Truck("Truck3", 3)]
         self.__load_trucks(package_csv)
 
-    # "private" function that loads the trucks, which is assigning the truck value
-    # to packages added to the package_list HashTable
+    # "private" function that loads the trucks ad assigns the truck value to packages added to the package_list
+    # HashTable
+    # O(n)
     def __load_trucks(self, package_csv):
 
         # Pre-calculated "routes" based off of zipcodes

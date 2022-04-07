@@ -88,7 +88,7 @@ class Simulation:
             time = time + datetime.timedelta(seconds=20)
 
     # Various functions for printing out package and truck status of the simulated state.
-
+    # O(1)
     def package_info(self, pid):
         p = self.package_table.get(pid)
         print(
@@ -97,6 +97,7 @@ class Simulation:
         self.__print_pinfo(p)
         print("\n")
 
+    # O(n)
     def all_packages(self):
         print(
             "-----------------------------------------------------------------------------------------------------------"
@@ -106,11 +107,13 @@ class Simulation:
             self.__print_pinfo(p[1])
         print("\n")
 
+    # O(n)
     def trucks_at_time(self):
         print("----------------------------------------------------------------------------------------------------")
         for truck in self.trucks:
             self.__print_tinfo(truck)
 
+    # O(n)
     def trucks_final(self):
         print("----------------------------------------------------------------------------------------------------")
         for truck in self.trucks:
@@ -120,6 +123,7 @@ class Simulation:
             f"Total Mileage: {round((self.trucks[0].mileage + self.trucks[1].mileage + self.trucks[2].mileage), 1)} Miles")
         print("----------------------------------------------------------------------------------------------------")
 
+    # O(1)
     def __print_tinfo(self, truck):
         if truck.end_time == None:
             endtime = "Still On Route"
@@ -130,6 +134,7 @@ class Simulation:
               f"\n         Start Time: {truck.start_time.strftime('%H:%M:%S')} | End TIme : {endtime} | Mileage: {round(truck.mileage, 1)} Miles  ")
         print("----------------------------------------------------------------------------------------------------")
 
+    # O(1)
     def __print_pinfo(self, package):
 
         if package.time_delivered is not None:

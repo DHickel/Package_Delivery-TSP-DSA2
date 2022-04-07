@@ -50,8 +50,7 @@ class Truck:
         self.dist_to_next = self.__calc_dist_to_next(self.current[0], self.route[0][0])
         self.next = self.route[0]
 
-    # O(n) because of while loop that may be triggered, but generally will have a constant run time and
-    # shouldn't loop through all of n
+
 
     # Called from the main simulation loop and simulates the delivering of a package. THe involves getting the
     # package id from the route tuple, calling a function to set it as delivered as well as the time delivered. Then
@@ -62,6 +61,8 @@ class Truck:
     # travel to reach it. If route is also empty and the next position is the hub, then the hub has been reached and
     # the trucks  at_hub, finished, and end time variables can be set. Also sets current location to the address of
     # the hub.
+
+    # O(n) because of while loop that may be triggered for a limited input, but generally will be of constant run time
     def deliver_next(self, time):
         package_id = None
         if self.next is not None:
@@ -96,6 +97,7 @@ class Truck:
 
     # Called by deliver_next to avoid code redundancy and marks a packages' status as delivered and set the delivered
     # time to the current simulation time.
+    # O(1)
     def mark_delivered(self, package_id, time):
         if package_id is not None:
             package = self.package_table.get(package_id)
@@ -103,5 +105,6 @@ class Truck:
             package.time_delivered = time
 
     # Simple method to get the distance between two addresses
+    #O(1)
     def __calc_dist_to_next(self, current, next):
         return self.addresses.get(current).paths.get(next)
