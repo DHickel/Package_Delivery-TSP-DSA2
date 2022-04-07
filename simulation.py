@@ -37,6 +37,7 @@ class Simulation:
                     if not truck.finished and truck.mileage > truck.dist_to_next:
                         truck.deliver_next(time)
 
+
                 if time == datetime.datetime(1, 1, 1, 10, 20, 0):
                     package = self.package_table.get("9")
                     package.status = Status.ENROUTE

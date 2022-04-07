@@ -1,6 +1,4 @@
 import datetime
-
-import hashtable
 from package import Status
 from route import Route
 
@@ -51,6 +49,7 @@ class Truck:
     def deliver_next(self,time):
         package_id = None
         if self.next is not None and self.next != 0:
+
             package_id = self.next[1]
             self.mark_delivered(package_id, time)
 
@@ -88,9 +87,7 @@ class Truck:
             package.time_delivered = time
 
     def __calc_dist_to_next(self, current, next):
-        for a in self.addresses:
-            if a.address == current:
-                return a.paths.get(next)
+        return self.addresses.get(current).paths.get(next)
 
 
 

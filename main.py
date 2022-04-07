@@ -23,7 +23,7 @@ for truck in trucks:
             deliveries.append((package_table.get(p).address, p))
     truck.route = Route(address_table, deliveries, hub).route
     truck.next = truck.route[0][0]
-    print(len(truck.route))
+
 
 quit = False
 
